@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Kenneth Cajayon T.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+        #hamburger {
+            display: none;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.7);
+            animation: scaleIn 0.3s ease-out forwards;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .close:hover {
+            color: #333;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            #hamburger {
+                display: block;
+            }
+            #nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                padding: 1rem;
+            }
+            #nav-menu.active {
+                display: flex;
+                flex-direction: column;
+            }
+            #nav-menu a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid #f3f4f6;
+            }
+            #nav-menu a:last-child {
+                border-bottom: none;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+        
+        /* Offset for sticky header */
+        section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold gradient-text">UI/UX Designer </a>
+            <button id="hamburger" class="text-gray-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <nav id="nav-menu" class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-blue-600 transition nav-link">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-blue-600 transition nav-link">About</a>
+                <a href="#projects" class="text-gray-700 hover:text-blue-600 transition nav-link">Projects</a>
+                <a href="#skills" class="text-gray-700 hover:text-blue-600 transition nav-link">Skills</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="gradient-text">Ken Cajayon</span></h1>
+                <h2 class="text-2xl md:text-3xl text-gray-600 mb-6">Aspiring UI/UX Designer & Front-End Developer</h2>
+                <p class="text-gray-600 mb-8 max-w-lg">
+                    Passionate about system development, front-end development, UI/UX, and graphic design. Seeking opportunities to apply my skills in a professional environment.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">Contact Me</a>
+                    <a href="#projects" class="border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg transition">View Projects</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                    <img src="Pic.jpeg" alt="Professional headshot of Kenneth Cajayon" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-100 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">About Me</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4">Who Am I?</h3>
+                    <p class="text-gray-600 mb-4">
+                        I'm Kenneth Cajayon, a Computer Science graduate with a strong passion for front-end development, UI/UX, and graphic design.
+                        I enjoy building projects that bring together functionality and visual appeal — whether it's a fully developed system or a clean, user-centered interface.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        I continuously explore design trends and collaborative development through hands-on projects.
+                        I'm passionate about creating meaningful digital experiences that are both intuitive and engaging.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                            <i class="fas fa-graduation-cap text-blue-500 mr-3"></i>
+                            <span>Cavite State University</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-500 mr-3"></i>
+                            <span>Imus Cavite, Philippines</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4">Education</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg"> Junior High School </h4>
+                            <p class="text-gray-600">Lubang Integrated School • 2017 - 2020</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-lg">Senior High School | STEM Strand</h4>
+                            <p class="text-gray-600">Lubang Integrated School • 2021 - 2022</p> 
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                <h4 class="font-bold text-lg">Bachelor of Science in Computer Science</h4>
+                                <p class="text-gray-600">Cavite State University • 2022 - 2026</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="project-image h-64 overflow-hidden">
+                        <video autoplay muted loop class="w-full h-full object-cover">
+                            <source src="1.mp4" type="video/mp4">
+                          </video>                          
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Graphic Design </h3>
+                        <p class="text-gray-600 mb-4">Collection of logos and branding materials created for various clients.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Adobe Photoshop</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Canva</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Illustration</span>
+                        </div>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium view-details" data-project="1">View Design →</a>
+                    </div>
+                </div>
+
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="project-image h-64 overflow-hidden">
+                        <video autoplay muted loop class="w-full h-full object-cover">
+                            <source src="2.mp4" type="video/mp4">
+                          </video> 
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">2D Platformer Game</h3>
+                        <p class="text-gray-600 mb-4">Developed a side-scrolling adventure game with Unity and C#.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Unity</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">C#</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Game Development</span>
+                        </div>
+                <a href="https://drive.google.com/drive/folders/1MTc840Wxo4_xx-qO9l5VY3kuUBKfCUoG" 
+                target="_blank" 
+                class="text-blue-600 hover:text-blue-800 font-medium">
+                View Game →
+             </a>
+            </div>
+        </div>
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="project-image h-64 overflow-hidden">
+                        <video autoplay muted loop class="w-full h-full object-cover">
+                            <source src="3.mp4" type="video/mp4">
+                          </video>
+                          </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">NEOFIT | System</h3>
+                        <p class="text-gray-600 mb-4">web-based e-commerce platform system management for retail clothing stores.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">PHP</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">MySQL</span>
+                            <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
+                        </div>
+                        <a href="https://calebhilis25.github.io/ui/index1.html" 
+                target="_blank" 
+                class="text-blue-600 hover:text-blue-800 font-medium">
+                View Case Study →
+             </a>
+            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-100 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">My Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Technical Skills</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                            <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
+                            <p>HTML</p>
+                        </div>
+                        <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                            <i class="fab fa-css3-alt text-4xl text-blue-500 mb-2"></i>
+                            <p>CSS</p>
+                        </div>
+                    <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                        <i class="fas fa-code text-4xl text-yellow-600 mb-2"></i>
+                        <p>Front-End Development</p>                        
+                    </div>
+                        <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="Photoshop Logo" class="w-9 h-8 mx-auto mb-2">
+                            <p>Photoshop</p>
+                        </div>                        
+                        <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                            <i class="fas fa-object-group text-4xl text-purple-500 mb-2"></i>
+                            <p>UI/UX Design</p>
+                        </div>                        
+                        <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                            <i class="fas fa-pencil-ruler text-4xl text-pink-500 mb-2"></i>
+                            <p>Graphic Design</p>
+                        </div>
+                        <div class="skill-item bg-white p-4 rounded-lg shadow-sm text-center transition duration-300">
+                            <i class="fab fa-unity text-4xl text-gray-700 mb-2"></i>
+                            <p>Unity</p>
+                            </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Soft Skills</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Fast Learner & Adaptable</h4>
+                                <p class="text-gray-600 text-sm">Quick to grasp new concepts and technologies</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Design Leadership</h4>
+                                <p class="text-gray-600 text-sm">Experience leading design direction and ensuring cohesive visual identity across projects
+                                </p>
+                            </div>
+                         </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Collaboration & Teamwork</h4>
+                                <p class="text-gray-600 text-sm">Proven ability to work effectively in team environments</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Problem Solving</h4>
+                                <p class="text-gray-600 text-sm">Creative approach to troubleshooting and debugging</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-medium">Attention to Detail</h4>
+                                <p class="text-gray-600 text-sm">Meticulous approach to code quality and user experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-blue-500 mr-4"></i>
+                                <div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:kencjyn@gmail.com" class="text-blue-600 hover:underline">kencjyn@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-blue-500 mr-4"></i>
+                                <div>
+                                    <p class="font-medium">Phone</p>
+                                    <p class="text-gray-600">+63 9603012586</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-blue-500 mr-4"></i>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p class="text-gray-600">Cavite, Philippines</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-linkedin text-blue-500 mr-4"></i>
+                                <div>
+                                    <p class="font-medium">LinkedIn</p>
+                                    <a href="https://www.linkedin.com/in/kencjyn" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">linkedin.com/in/kencjyn</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-semibold mb-4">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.linkedin.com/in/kencjyn" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-2xl">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/ken-cjyn" target="_blank" class="text-gray-700 hover:text-gray-900 text-2xl">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.facebook.com/kencjyn" target="_blank" class="text-blue-500 hover:text-blue-700 text-2xl">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Project Details -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Project data - Replace these image URLs with your actual project images
+        const projectData = {
+            1: {
+                title: "Graphic Design Portfolio",
+                description: "Collection of logos and branding materials created for various clients using Adobe Photoshop and Canva.",
+                images: [
+                    "1.png",
+                    "2.png",
+                    "3.png",
+                    "4.png"
+                ],
+                details: "This project showcases my graphic design skills, including logo creation, branding materials, and visual identity design. Each piece demonstrates attention to detail and understanding of design principles."
+            },
+            2: {
+                title: "Network Simulation",
+                description: "Corporate network design and implementation using Cisco Packet Tracer.",
+                images: [
+                    "https://placehold.co/800x600/1e40af/ffffff?text=Network+Topology",
+                    "https://placehold.co/800x600/dc2626/ffffff?text=Router+Config",
+                    "https://placehold.co/800x600/059669/ffffff?text=Switch+Setup"
+                ],
+                details: "A comprehensive network simulation project that demonstrates my understanding of network protocols, router configuration, and network security principles."
+            },
+            3: {
+                title: "2D Platformer Game",
+                description: "Developed a side-scrolling adventure game with Unity and C#.",
+                images: [
+
+                    "https://placehold.co/800x600/7c3aed/ffffff?text=Game+Screenshot+1",
+                    "https://placehold.co/800x600/ea580c/ffffff?text=Game+Screenshot+2",
+                    "https://placehold.co/800x600/0891b2/ffffff?text=Character+Design"
+                ],
+                details: "A 2D platformer game developed using Unity engine and C#. Features include character movement, enemy AI, collectible items, and multiple levels with increasing difficulty."
+            },
+            4: {
+                title: "Clothing Inventory System",
+                description: "Web-based inventory management system for retail clothing stores.",
+                images: [
+                    "https://placehold.co/800x600/be185d/ffffff?text=Dashboard",
+                    "https://placehold.co/800x600/0369a1/ffffff?text=Inventory+List",
+                    "https://placehold.co/800x600/047857/ffffff?text=Add+Product"
+                ],
+                details: "A complete inventory management system built with PHP and MySQL. Features include product management, stock tracking, sales reporting, and user authentication."
+            }
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.querySelector('.close');
+
+        // Add click event to all "View Details" links
+        document.querySelectorAll('.view-details').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectId = link.getAttribute('data-project');
+                showProjectDetails(projectId);
+            });
+        });
+
+        function showProjectDetails(projectId) {
+            const project = projectData[projectId];
+            if (!project) return;
+
+            // Create modal content
+            let imagesHTML = '';
+            project.images.forEach(imageUrl => {
+                imagesHTML += `
+                    <div class="mb-4">
+                        <img src="${imageUrl}" alt="${project.title}" class="w-full h-auto object-cover rounded-lg shadow-md">
+                    </div>
+                    
+                `;
+            });
+
+            modalContent.innerHTML = `
+                <h2 class="text-2xl font-bold mb-4 gradient-text">${project.title}</h2>
+                <p class="text-gray-600 mb-6">${project.description}</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    ${imagesHTML}
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold mb-2">Project Details:</h3>
+                    <p class="text-gray-700">${project.details}</p>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent body scrolling
+        }
+
+        // Close modal when clicking the close button
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore body scrolling
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore body scrolling
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore body scrolling
+            }
+        });
+    </script>
+</body>
+</html>
